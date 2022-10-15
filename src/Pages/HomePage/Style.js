@@ -18,10 +18,14 @@ display: grid;
 
 grid-template-columns: 1fr 1fr 1fr 1fr;
 width: 100px;
+
+position: absolute;
+left: 440px;
+
 `
 
 export const Card = styled.div`
-    width: 14vw;
+    width: 10.5vw;
     border: 1px solid black;
 
     img {
