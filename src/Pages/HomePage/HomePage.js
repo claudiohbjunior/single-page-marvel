@@ -1,8 +1,7 @@
 
 import styles from "./style.css"
 import { useForm } from "react-hook-form"
-import { ListContainer, Div, Teste, Card, Button, Container, ModalOverlay } from "./Style"
-import CharacterTable from "../../Componets/CharacterTable"
+import { Div, CardModal, Card, Button } from "./Style"
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"    
 import axios from "axios"
@@ -10,14 +9,8 @@ import Modal from 'react-modal'
 
 Modal.setAppElement("#root")
 
-
-
-
-
-
 export const HomePage = () => {
 
-// const [characters, setCharacters] = useState("http://gateway.marvel.com/v1/public/characters?ts=1&apikey=1e1d23e9e5ba1f53fd3070197bc52a8c&hash=7d21ad7ddd0b6a6a315f0168335c8eb6")
 const [item, setItem] = useState([])
 const [names, setName] = useState("")
 const {register, handleSubmit, setValue, setFocus} = useForm()
@@ -26,18 +19,10 @@ const onSubmit = (e) => {
     console.log(e)
 }
 
-
-const [isLoading, setLoading] = useState(true)
 const [modalIsOpen, setIsOpen] = useState(false)
 const [modalEndIsOpen, setEndIsOpen] = useState(false)
 
 const { id } = useParams()
-
-// const fetch=async()=>{
-//     const res=await axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}?ts=1&apikey=1e1d23e9e5ba1f53fd3070197bc52a8c&hash=7d21ad7ddd0b6a6a315f0168335c8eb6`)
-//     setItens(res.data.data.results[0])
-// }
-// fetch()
 
 function openModal(ids) {
     setIsOpen(true)
@@ -47,8 +32,6 @@ function openModal(ids) {
 function openModalEnd () {
     setEndIsOpen(true)
 }
-
-
 
 function closeModal() {
     setIsOpen(false)
@@ -91,21 +74,14 @@ useEffect(() => {
     })
 }, [])
 
-console.log(item)
-    return (
-        
-       
-            <Teste>
-            
-            
-                {item.map(per => (
-                    
-                        <Card>
-                        <img src={`${per.thumbnail.path}.${per.thumbnail.extension}`} />
-                        <Div>
+    return (           
+        <CardModal>
+            {item.map(per => (     
+                <Card>
+                   <img src={`${per.thumbnail.path}.${per.thumbnail.extension}`} />
+                     <Div>
                         <div><h3>{per.name}</h3></div><div><Button onClick={() =>openModal(per.description)}>Detalhes</Button></div>
-
-                        
+             
                         <Modal
                         isOpen={modalIsOpen}
                         onRequestClose={closeModal}
@@ -167,20 +143,12 @@ console.log(item)
                             <button onClick={closeModalEnd}>Fechar</button>
                             </div>
    
-                        </Modal>
-
+                        </Modal>       
+                    </Div>
                         
-
-
-                        
-                        </Div>
-                        
-                        </Card>
-                        
-            
-                )) }
-        
-        </Teste>
+                </Card>
+                )) }       
+        </CardModal>
         
     )
 }

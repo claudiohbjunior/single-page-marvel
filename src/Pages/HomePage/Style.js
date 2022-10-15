@@ -1,19 +1,7 @@
 import { resolvePath } from "react-router-dom";
 import styled from "styled-components"; 
 
-
- 
-
-
-
-
-export const Div2 = styled.div`
-    display: flex;
-    
-
-`
-
-export const Teste = styled.div`
+export const CardModal= styled.div`
 display: grid;
 
 grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -55,16 +43,5 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-export const ModalOverlay = styled.div`
-background: white;
-position: fixed;
-top: 0;
-bottom: 0;
-rigth: 0;
-left: 0;
 
-display: flex;
-align-itemns: center;
-justify-content: center;
-`
 
